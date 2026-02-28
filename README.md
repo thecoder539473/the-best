@@ -1,63 +1,120 @@
 # the-best proxy <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Hacker Dashboard</title>
+<meta charset="UTF-8">
+<title>Hacker Login</title>
 <style>
   body {
     margin: 0;
+    height: 100vh;
     background: black;
-    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: monospace;
+    color: #00ff00;
   }
 
-  .topbar {
-    border-bottom: 2px solid #00ff00;
-    padding: 15px;
+  .terminal {
+    border: 2px solid #00ff00;
+    padding: 30px;
+    width: 350px;
+    box-shadow: 0 0 20px #00ff00;
+  }
+
+  h1 {
+    text-align: center;
     text-shadow: 0 0 10px #00ff00;
   }
 
-  .content {
-    padding: 20px;
-  }
-
-  .box {
-    border: 1px solid #00ff00;
-    padding: 15px;
-    margin: 15px 0;
-    box-shadow: 0 0 10px #00ff00;
-  }
-
-  button {
+  input {
+    width: 100%;
     background: black;
-    color: #00ff00;
     border: 1px solid #00ff00;
-    padding: 8px 15px;
-    cursor: pointer;
+    color: #00ff00;
+    padding: 10px;
+    margin: 10px 0;
+    outline: none;
   }
 
-  button:hover {
+  .remember {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    width: 100%;
+    background: black;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  .btn:hover {
     background: #00ff00;
     color: black;
   }
+
+  .msg {
+    margin-top: 10px;
+  }
+
+  .scanlines::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.02),
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+  }
 </style>
 </head>
-<body>
+<body class="scanlines">
 
-<div class="topbar">
-  ROOT ACCESS GRANTED
-</div>
+<div class="terminal">
+  <h1>ACCESS TERMINAL</h1>
 
-<div class="content">
-  <div class="box">🌐 Proxy Status: ONLINE</div>
-  <div class="box">🧠 AI Core: ACTIVE</div>
-  <div class="box">📡 Network Scan: READY</div>
+  <input type="text" id="username" placeholder="USERNAME">
+  <input type="password" id="password" placeholder="PASSWORD">
 
-  <button onclick="logout()">LOGOUT</button>
+  <div class="remember">
+    <input type="checkbox" id="rememberMe"> REMEMBER ME
+  </div>
+
+  <button class="btn" onclick="login()">LOGIN</button>
+
+  <div class="msg" id="msg"></div>
 </div>
 
 <script>
-  function logout() {
-    window.location.href = "login.html";
+  window.onload = () => {
+    const savedUser = localStorage.getItem("rememberedUser");
+    if (savedUser) {
+      document.getElementById("username").value = savedUser;
+      document.getElementById("rememberMe").checked = true;
+    }
+  };
+
+  function login() {
+    const user = username.1;
+    const pass = password.1;
+    const remember = rememberMe.checked;
+
+    if (user === "admin" && pass === "1234") {
+      if (remember) localStorage.setItem("rememberedUser", user);
+      else localStorage.removeItem("rememberedUser");
+
+      window.location.href = "dashboard.html";
+    } else {
+      msg.innerText = "ACCESS DENIED";
+    }
   }
 </script>
 
