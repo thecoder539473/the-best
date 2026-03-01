@@ -27,4 +27,3 @@
       msg.innerText = "ACCESS DENIED";
     }
   }
-</script>
