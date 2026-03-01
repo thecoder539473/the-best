@@ -1,4 +1,4 @@
-# <script>
+<script>
   window.onload = () => {
     const savedUser = localStorage.getItem("rememberedUser");
     if (savedUser) {
