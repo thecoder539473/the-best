@@ -13,7 +13,7 @@
     const remember = document.getElementById("rememberMe").checked;
 
     let users = JSON.parse(localStorage.getItem("users")) || {
-      admin: "1234" // default account
+      admin: "1234"
     };
 
     if (users[user] && users[user] === pass) {
@@ -24,6 +24,7 @@
 
       window.location.href = "dashboard.html";
     } else {
-      msg.innerText = "ACCESS DENIED";
+      document.getElementById("msg").innerText = "ACCESS DENIED";
     }
   }
+</script>
